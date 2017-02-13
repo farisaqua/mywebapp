@@ -1,0 +1,53 @@
+<div class="person-list">
+    <h3>Persons</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name </th>
+                <th>Job Title</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="x in $ctrl.persons">
+                <td> <a href="javascript:void(0);" ng-click="$ctrl.editPerson(x)" title="Click to edit">{{x.id}}</a></td>
+                <td>{{x.firstName}}</td>
+                <td>{{x.lastName}}</td>
+                <td>{{x.jobTitle}}</td>
+                <td><button class="btn btn-primary btn-sm" ng-click="$ctrl.editPerson(x)">
+                Edit &nbsp;
+                <i class="glyphicon glyphicon-edit"></i>
+                </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="success-msg" ng-show="$ctrl.successMessage">
+        <p>{{$ctrl.successMessage}}</p>
+        <button class="btn btn-sm btn-primary" ng-click="$ctrl.successMessage = undefined">Hide</button>
+    </div>
+    <div class="error-msg" ng-show="$ctrl.errorMessage">
+        <p>{{$ctrl.errorMessage}}</p>
+        <button class="btn btn-sm btn-primary" ng-click="$ctrl.errorMessage = undefined">Hide</button>
+    </div>
+    <div class="person-details" ng-show="$ctrl.selectedPerson">
+        <h3>Person Details - {{$ctrl.selectedPerson.firstName}}</h3>
+        <form class="form">
+            <div class="form-group">
+                <label for="firstName">First Name: </label>
+                <input type="text" class="form-control" id="firstName" placeholder="First Name" ng-model="$ctrl.selectedPerson.firstName">
+            </div>
+             <div class="form-group">
+                <label for="lastName">Last Name: </label>
+                <input type="text" class="form-control" id="lastName" placeholder="Last Name" ng-model="$ctrl.selectedPerson.lastName">
+            </div>
+             <div class="form-group">
+                <label for="job">Job Title: </label>
+                <input type="text" class="form-control" id="job" placeholder="Job Title" ng-model="$ctrl.selectedPerson.jobTitle">
+            </div>
+            <button type="button" class="btn btn-default" ng-click="$ctrl.updatePerson($ctrl.selectedPerson)">Save</button>
+        </form>
+    </div>
+</div>
